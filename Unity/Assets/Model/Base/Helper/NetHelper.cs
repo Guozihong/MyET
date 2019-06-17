@@ -16,5 +16,9 @@ namespace ETModel
 			}
 			return addressIPs.ToArray();
 		}
+		public static string GetHostName()
+		{
+			return Dns.GetHostName();
+		}
 	}
 }

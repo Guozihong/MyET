@@ -29,7 +29,7 @@ namespace ETModel
 			{
 				Game.Scene.GetComponent<TimerComponent>().WaitAsync(100);
 				
-				if (!ips.Contains(startConfig.ServerIP) && startConfig.ServerIP != "*")
+				if (!ips.Contains(startConfig.ServerIP) && startConfig.ServerIP != "*" && NetHelper.GetHostName() != startConfig.ServerIP)
 				{
 					continue;
 				}
