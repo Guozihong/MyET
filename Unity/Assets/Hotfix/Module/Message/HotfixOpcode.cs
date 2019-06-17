@@ -31,6 +31,21 @@ namespace ETHotfix
 	[Message(HotfixOpcode.G2C_PlayerInfo)]
 	public partial class G2C_PlayerInfo : IResponse {}
 
+	[Message(HotfixOpcode.C2R_LandlordsLogin)]
+	public partial class C2R_LandlordsLogin : IRequest {}
+
+	[Message(HotfixOpcode.R2C_LandlordsLogin)]
+	public partial class R2C_LandlordsLogin : IResponse {}
+
+	[Message(HotfixOpcode.C2R_LandlordsRegist)]
+	public partial class C2R_LandlordsRegist : IRequest {}
+
+	[Message(HotfixOpcode.C2G_LandlordsLoginGate)]
+	public partial class C2G_LandlordsLoginGate : IRequest {}
+
+	[Message(HotfixOpcode.G2C_LandlordsLoginGate)]
+	public partial class G2C_LandlordsLoginGate : IResponse {}
+
 }
 namespace ETHotfix
 {
@@ -46,5 +61,10 @@ namespace ETHotfix
 		 public const ushort PlayerInfo = 10008;
 		 public const ushort C2G_PlayerInfo = 10009;
 		 public const ushort G2C_PlayerInfo = 10010;
+		 public const ushort C2R_LandlordsLogin = 10011;
+		 public const ushort R2C_LandlordsLogin = 10012;
+		 public const ushort C2R_LandlordsRegist = 10013;
+		 public const ushort C2G_LandlordsLoginGate = 10014;
+		 public const ushort G2C_LandlordsLoginGate = 10015;
 	}
 }

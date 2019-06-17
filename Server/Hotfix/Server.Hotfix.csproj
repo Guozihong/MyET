@@ -31,6 +31,9 @@
     <ProjectReference Include="..\ThirdParty\MongoDBDriver\MongoDB.Driver\MongoDB.Driver.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Landlords\Handler\Map\" />
+    <Folder Include="Landlords\Handler\Match\" />
+    <Folder Include="Landlords\System\" />
     <Folder Include="Module\Http\" />
   </ItemGroup>
 </Project>

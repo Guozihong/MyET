@@ -58,6 +58,8 @@ namespace App
 						Game.Scene.AddComponent<NetOuterComponent, string>(outerConfig.Address);
 						Game.Scene.AddComponent<LocationProxyComponent>();
 						Game.Scene.AddComponent<RealmGateAddressComponent>();
+						Game.Scene.AddComponent<OnlineComponent>();
+						Game.Scene.AddComponent<DBProxyComponent>();
 						break;
 					case AppType.Gate:
 						Game.Scene.AddComponent<PlayerComponent>();
@@ -68,7 +70,9 @@ namespace App
 						Game.Scene.AddComponent<LocationProxyComponent>();
 						Game.Scene.AddComponent<ActorMessageSenderComponent>();
 						Game.Scene.AddComponent<ActorLocationSenderComponent>();
-						Game.Scene.AddComponent<GateSessionKeyComponent>();
+
+						Game.Scene.AddComponent<LandlordsSessionKeyComponent>();
+                        Game.Scene.AddComponent<UserComponent>();
 						break;
 					case AppType.Location:
 						Game.Scene.AddComponent<NetInnerComponent, string>(innerConfig.Address);
@@ -83,6 +87,19 @@ namespace App
 						Game.Scene.AddComponent<MailboxDispatcherComponent>();
 						Game.Scene.AddComponent<ActorMessageDispatcherComponent>();
 						Game.Scene.AddComponent<PathfindingComponent>();
+						Game.Scene.AddComponent<DBProxyComponent>();
+						break;
+					case AppType.Match:
+						Game.Scene.AddComponent<NetInnerComponent, string>(innerConfig.Address);
+						Game.Scene.AddComponent<LocationProxyComponent>();
+						Game.Scene.AddComponent<ActorMessageSenderComponent>();
+						Game.Scene.AddComponent<ActorLocationSenderComponent>();
+						Game.Scene.AddComponent<MailboxDispatcherComponent>();
+						Game.Scene.AddComponent<ActorMessageDispatcherComponent>();
+						break;
+					case AppType.DB:
+						Game.Scene.AddComponent<NetInnerComponent, string>(innerConfig.Address);
+						Game.Scene.AddComponent<DBComponent>();
 						break;
 					case AppType.AllServer:
 						// 发送普通actor消息
@@ -90,12 +107,13 @@ namespace App
 						
 						// 发送location actor消息
 						Game.Scene.AddComponent<ActorLocationSenderComponent>();
-						
-						//Game.Scene.AddComponent<DBComponent>();
-						//Game.Scene.AddComponent<DBProxyComponent>();
-						
-						// location server需要的组件
-						Game.Scene.AddComponent<LocationComponent>();
+
+                        //数据库操作
+                        Game.Scene.AddComponent<DBComponent>();
+                        Game.Scene.AddComponent<DBProxyComponent>();
+
+                        // location server需要的组件
+                        Game.Scene.AddComponent<LocationComponent>();
 						
 						// 访问location server的组件
 						Game.Scene.AddComponent<LocationProxyComponent>();
@@ -113,10 +131,12 @@ namespace App
 						// manager server组件，用来管理其它进程使用
 						Game.Scene.AddComponent<AppManagerComponent>();
 						Game.Scene.AddComponent<RealmGateAddressComponent>();
-						Game.Scene.AddComponent<GateSessionKeyComponent>();
-						
-						// 配置管理
-						Game.Scene.AddComponent<ConfigComponent>();
+
+						Game.Scene.AddComponent<LandlordsSessionKeyComponent>();
+                        Game.Scene.AddComponent<UserComponent>();
+
+                        // 配置管理
+                        Game.Scene.AddComponent<ConfigComponent>();
 						
 						// recast寻路组件
 						Game.Scene.AddComponent<PathfindingComponent>();
@@ -126,6 +146,7 @@ namespace App
 
 						Game.Scene.AddComponent<ConsoleComponent>();
 						// Game.Scene.AddComponent<HttpComponent>();
+						Game.Scene.AddComponent<OnlineComponent>();
 						break;
 					case AppType.Benchmark:
 						Game.Scene.AddComponent<NetOuterComponent>();

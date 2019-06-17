@@ -35,7 +35,9 @@ namespace ETModel
 
 		public List<StartConfig> GateConfigs { get; private set; }
 
-		public void Awake(string path, int appId)
+		public StartConfig MatchConfigs { get; private set; }
+
+        public void Awake(string path, int appId)
 		{
 			Instance = this;
 			
@@ -86,6 +88,10 @@ namespace ETModel
 					{
 						this.GateConfigs.Add(startConfig);
 					}
+
+                    if (startConfig.AppType.Is(AppType.Match)) {
+                        this.MatchConfigs = startConfig;
+                    }
 				}
 				catch (Exception e)
 				{

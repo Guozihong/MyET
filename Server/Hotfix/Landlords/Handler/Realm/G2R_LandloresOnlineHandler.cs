@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using ETModel;
+
+namespace ETHotfix
+{
+    [MessageHandler(AppType.Realm)]
+    public class G2R_LandloresOnlineHandler : AMRpcHandler<G2R_LandlordsOnline, EmptyResponse>
+    {
+        protected override void Run(Session session, G2R_LandlordsOnline message, Action<EmptyResponse> reply)
+        {
+            RunAsync(session, message, reply).Coroutine();
+        }
+
+        private async ETVoid RunAsync(Session session, G2R_LandlordsOnline message, Action<EmptyResponse> reply) {
+            EmptyResponse respone = new EmptyResponse();
+            try
+            {
+                OnlineComponent onlineComponent = Game.Scene.GetComponent<OnlineComponent>();
+                // 踢掉旧连接
+                await onlineComponent.KickPlayer(message.UserId);
+                onlineComponent.Add(message.UserId, message.GateAppId);
+
+                reply(respone);
+            }
+            catch (Exception e) {
+                ReplyError(respone, e, reply);
+            }
+        }
+    }
+}

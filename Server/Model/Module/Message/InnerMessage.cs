@@ -378,4 +378,210 @@ namespace ETModel
 
 	}
 
+	[Message(InnerOpcode.R2G_LandlordsGetLoginKey)]
+	public partial class R2G_LandlordsGetLoginKey: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public long UserId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.G2R_LandlordsGetLoginKey)]
+	public partial class G2R_LandlordsGetLoginKey: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public long Key { get; set; }
+
+	}
+
+	[Message(InnerOpcode.DBDeleteRequest)]
+	public partial class DBDeleteRequest: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public long Id { get; set; }
+
+		public string CollectionName { get; set; }
+
+	}
+
+	[Message(InnerOpcode.DBDeleteResponse)]
+	public partial class DBDeleteResponse: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public long deleteCount { get; set; }
+
+	}
+
+	[Message(InnerOpcode.DBDeleteBatchRequest)]
+	public partial class DBDeleteBatchRequest: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public string CollectionName { get; set; }
+
+		public List<long> IdList = new List<long>();
+
+	}
+
+	[Message(InnerOpcode.DBDeleteBatchResponse)]
+	public partial class DBDeleteBatchResponse: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public long deleteCount { get; set; }
+
+	}
+
+	[Message(InnerOpcode.DBDeleteJsonRequest)]
+	public partial class DBDeleteJsonRequest: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public string CollectionName { get; set; }
+
+		public string Json { get; set; }
+
+	}
+
+	[Message(InnerOpcode.DBDeleteJsonResponse)]
+	public partial class DBDeleteJsonResponse: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public long deleteCount { get; set; }
+
+	}
+
+	[Message(InnerOpcode.EmptyResponse)]
+	public partial class EmptyResponse: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.ActorLocation_EmptyResponse)]
+	public partial class ActorLocation_EmptyResponse: IActorLocationResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Actor_EmptyResponse)]
+	public partial class Actor_EmptyResponse: IActorResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+	}
+
+	[Message(InnerOpcode.JsonResponse)]
+	public partial class JsonResponse: IResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public string Result { get; set; }
+
+	}
+
+	[Message(InnerOpcode.ActorLocation_JsonResponse)]
+	public partial class ActorLocation_JsonResponse: IActorLocationResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public string Result { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Actor_JsonResponse)]
+	public partial class Actor_JsonResponse: IActorResponse
+	{
+		public int RpcId { get; set; }
+
+		public int Error { get; set; }
+
+		public string Message { get; set; }
+
+		public string Result { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Actor_LandlordsKickPlayer)]
+	public partial class Actor_LandlordsKickPlayer: IActorLocationRequest
+	{
+		public int RpcId { get; set; }
+
+		public long ActorId { get; set; }
+
+		public long UserId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.R2G_LandlordsKickPlayer)]
+	public partial class R2G_LandlordsKickPlayer: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public long UserId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.G2R_LandlordsOnline)]
+	public partial class G2R_LandlordsOnline: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public long UserId { get; set; }
+
+		public long GateAppId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.G2R_LandlordsOffline)]
+	public partial class G2R_LandlordsOffline: IRequest
+	{
+		public int RpcId { get; set; }
+
+		public long UserId { get; set; }
+
+	}
+
 }

@@ -96,5 +96,48 @@ namespace ETHotfix
 			DBQueryJsonResponse dbQueryJsonResponse = (DBQueryJsonResponse)await session.Call(new DBQueryJsonRequest { CollectionName = typeof(T).Name, Json = json });
 			return dbQueryJsonResponse.Components;
 		}
+		public static async ETTask<long> Delete<T>(this DBProxyComponent self, long id) where T: ComponentWithId
+		{
+			Session session = Game.Scene.GetComponent<NetInnerComponent>().Get(self.dbAddress);
+			DBDeleteResponse dbDeleteResponse = (DBDeleteResponse)await session.Call(new DBDeleteRequest { CollectionName = typeof(T).Name, Id = id });
+			return dbDeleteResponse.deleteCount;
+		}
+		
+		/// <summary>
+		/// 根据查询表达式删除
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="exp"></param>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public static async ETTask<long> Delete<T>(this DBProxyComponent self, Expression<Func<T ,bool>> exp) where T: ComponentWithId
+		{
+			ExpressionFilterDefinition<T> filter = new ExpressionFilterDefinition<T>(exp);
+			IBsonSerializerRegistry serializerRegistry = BsonSerializer.SerializerRegistry;
+			IBsonSerializer<T> documentSerializer = serializerRegistry.GetSerializer<T>();
+			string json = filter.Render(documentSerializer, serializerRegistry).ToJson();
+			return await self.Delete<T>(json);
+		}
+
+		public static async ETTask<long> Delete<T>(this DBProxyComponent self, List<long> ids) where T : ComponentWithId
+		{
+			Session session = Game.Scene.GetComponent<NetInnerComponent>().Get(self.dbAddress);
+			DBDeleteBatchResponse dbDeleteBatchResponse = (DBDeleteBatchResponse)await session.Call(new DBDeleteBatchRequest { CollectionName = typeof(T).Name, IdList = ids });
+			return dbDeleteBatchResponse.deleteCount;
+		}
+
+		/// <summary>
+		/// 根据json查询条件删除
+		/// </summary>
+		/// <param name="self"></param>
+		/// <param name="json"></param>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public static async ETTask<long> Delete<T>(this DBProxyComponent self, string json) where T : ComponentWithId
+		{
+			Session session = Game.Scene.GetComponent<NetInnerComponent>().Get(self.dbAddress);
+			DBDeleteJsonResponse dbDeleteJsonResponse = (DBDeleteJsonResponse)await session.Call(new DBDeleteJsonRequest { CollectionName = typeof(T).Name, Json = json });
+			return dbDeleteJsonResponse.deleteCount;
+		}
 	}
 }

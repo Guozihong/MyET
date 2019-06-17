@@ -9,6 +9,7 @@ namespace ETModel
 		{
 			//获取本地的IP地址
 			List<string> addressIPs = new List<string>();
+			Log.Info("hostName: " + Dns.GetHostName());
 			foreach (IPAddress address in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
 			{
 				addressIPs.Add(address.ToString());

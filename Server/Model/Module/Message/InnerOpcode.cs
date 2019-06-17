@@ -35,5 +35,23 @@ namespace ETModel
 		 public const ushort G2M_CreateUnit = 1031;
 		 public const ushort M2G_CreateUnit = 1032;
 		 public const ushort G2M_SessionDisconnect = 1033;
+		 public const ushort R2G_LandlordsGetLoginKey = 1034;
+		 public const ushort G2R_LandlordsGetLoginKey = 1035;
+		 public const ushort DBDeleteRequest = 1036;
+		 public const ushort DBDeleteResponse = 1037;
+		 public const ushort DBDeleteBatchRequest = 1038;
+		 public const ushort DBDeleteBatchResponse = 1039;
+		 public const ushort DBDeleteJsonRequest = 1040;
+		 public const ushort DBDeleteJsonResponse = 1041;
+		 public const ushort EmptyResponse = 1042;
+		 public const ushort ActorLocation_EmptyResponse = 1043;
+		 public const ushort Actor_EmptyResponse = 1044;
+		 public const ushort JsonResponse = 1045;
+		 public const ushort ActorLocation_JsonResponse = 1046;
+		 public const ushort Actor_JsonResponse = 1047;
+		 public const ushort Actor_LandlordsKickPlayer = 1048;
+		 public const ushort R2G_LandlordsKickPlayer = 1049;
+		 public const ushort G2R_LandlordsOnline = 1050;
+		 public const ushort G2R_LandlordsOffline = 1051;
 	}
 }

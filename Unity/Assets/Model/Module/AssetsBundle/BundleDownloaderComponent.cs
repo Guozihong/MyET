@@ -42,10 +42,10 @@ namespace ETModel
 				using (UnityWebRequestAsync webRequestAsync = ComponentFactory.Create<UnityWebRequestAsync>())
 				{
 					versionUrl = GlobalConfigComponent.Instance.GlobalProto.GetUrl() + "StreamingAssets/" + "Version.txt";
-					//Log.Debug(versionUrl);
+					Log.Debug(versionUrl);
 					await webRequestAsync.DownloadAsync(versionUrl);
 					remoteVersionConfig = JsonHelper.FromJson<VersionConfig>(webRequestAsync.Request.downloadHandler.text);
-					//Log.Debug(JsonHelper.ToJson(this.VersionConfig));
+					Log.Debug(JsonHelper.ToJson(this.remoteVersionConfig));
 				}
 
 			}

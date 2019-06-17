@@ -249,3 +249,143 @@ message G2M_SessionDisconnect // IActorLocationMessage
     int32 RpcId = 90;
     int64 ActorId = 94;
 }
+
+message R2G_LandlordsGetLoginKey // IRequest
+{
+    int32 RpcId = 90;
+    int64 UserId = 91;
+}
+
+message G2R_LandlordsGetLoginKey // IResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    int64 Key = 93;
+}
+
+message DBDeleteRequest // IRequest
+{
+    int32 RpcId = 90;
+    int64 Id = 1;
+    string CollectionName = 2;
+}
+
+message DBDeleteResponse // IResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    int64 deleteCount = 1;
+}
+
+message DBDeleteBatchRequest // IRequest
+{
+    int32 RpcId = 90;
+    string CollectionName = 1;
+    repeated int64 IdList = 2;
+}
+
+message DBDeleteBatchResponse // IResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    int64 deleteCount = 1;
+}
+
+message DBDeleteJsonRequest // IRequest
+{
+    int32 RpcId = 90;
+    string CollectionName = 1;
+    string Json = 2;
+}
+
+message DBDeleteJsonResponse // IResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    int64 deleteCount = 1;
+}
+
+message EmptyResponse // IResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+message ActorLocation_EmptyResponse // IActorLocationResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+message Actor_EmptyResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+message JsonResponse // IResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    string Result = 1;
+}
+
+message ActorLocation_JsonResponse // IActorLocationResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    string Result = 1;
+}
+
+message Actor_JsonResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+
+    string Result = 1;
+}
+
+message Actor_LandlordsKickPlayer // IActorLocationRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 94;
+
+    int64 UserId = 1;
+}
+
+message R2G_LandlordsKickPlayer // IRequest
+{
+    int32 RpcId = 90;
+
+    int64 UserId = 1;
+}
+
+message G2R_LandlordsOnline // IRequest
+{
+    int32 RpcId = 90;
+
+    int64 UserId = 1;
+    int64 GateAppId = 2;
+}
+
+message G2R_LandlordsOffline // IRequest
+{
+    int32 RpcId = 90;
+
+    int64 UserId = 1;
+}

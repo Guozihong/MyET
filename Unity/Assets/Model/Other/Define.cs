@@ -1,6 +1,6 @@
 ﻿namespace ETModel
 {
-	public static class Define
+    public static class Define
 	{
 #if UNITY_EDITOR && !ASYNC
 		public static bool IsAsync = false;

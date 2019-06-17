@@ -23,6 +23,7 @@ namespace ETHotfix
 		public void Awake()
 		{
 			ReferenceCollector rc = this.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+			rc.Get<GameObject>("Account").GetComponent<InputField>().text = "aaaaaaaa";
 			loginBtn = rc.Get<GameObject>("LoginBtn");
 			loginBtn.GetComponent<Button>().onClick.Add(OnLogin);
 			this.account = rc.Get<GameObject>("Account");
@@ -30,7 +31,7 @@ namespace ETHotfix
 
 		public void OnLogin()
 		{
-			LoginHelper.OnLoginAsync(this.account.GetComponent<InputField>().text).Coroutine();
+			LoginHelper.OnLoginAsync(this.account.GetComponent<InputField>().text, "111111").Coroutine();
 		}
 	}
 }

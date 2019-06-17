@@ -91,5 +91,32 @@ namespace ETModel
 
 			return tcs.Task;
 		}
+		public ETTask<long> Delete(string collectionName, long id)
+		{
+			ETTaskCompletionSource<long> tcs = new ETTaskCompletionSource<long>();
+			DBDeleteTask dbDeleteTask = ComponentFactory.CreateWithId<DBDeleteTask, string, ETTaskCompletionSource<long>>(id, collectionName, tcs);
+			this.tasks[(int)((ulong)id % taskCount)].Add(dbDeleteTask);
+
+			return tcs.Task;
+		}
+
+		public ETTask<long> DeleteBatch(string collectionName, List<long> idList)
+		{
+			ETTaskCompletionSource<long> tcs = new ETTaskCompletionSource<long>();
+			DBDeleteBatchTask dbDeleteBatchTask = ComponentFactory.Create<DBDeleteBatchTask, List<long>, string, ETTaskCompletionSource<long>>(idList, collectionName, tcs);
+			this.tasks[(int)((ulong)dbDeleteBatchTask.Id % taskCount)].Add(dbDeleteBatchTask);
+
+			return tcs.Task;
+		}
+		
+		public ETTask<long> DeleteJson(string collectionName, string json)
+		{
+			ETTaskCompletionSource<long> tcs = new ETTaskCompletionSource<long>();
+			
+			DBDeleteJsonTask dbDeleteJsonTask = ComponentFactory.Create<DBDeleteJsonTask, string, string, ETTaskCompletionSource<long>>(collectionName, json, tcs);
+			this.tasks[(int)((ulong)dbDeleteJsonTask.Id % taskCount)].Add(dbDeleteJsonTask);
+
+			return tcs.Task;
+		}
 	}
 }
