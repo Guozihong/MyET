@@ -22,6 +22,7 @@ namespace ETModel
 		public void Awake()
 		{
 			string[] ips = NetHelper.GetAddressIPs();
+			Log.Info(ips.ToString());
 			StartConfig[] startConfigs = StartConfigComponent.Instance.GetAll();
 			
 			foreach (StartConfig startConfig in startConfigs)
